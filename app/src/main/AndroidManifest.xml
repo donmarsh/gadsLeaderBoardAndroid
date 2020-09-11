@@ -17,8 +17,7 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".ProjectSubmission"
-            android:label=""/>
+        <activity android:name=".ProjectSubmission"/>
         <activity android:name=".LeaderBoard"/>
     </application>
 
