@@ -12,6 +12,6 @@ class LeaderBoardViewAdapter(activity: AppCompatActivity, val itemsCount: Int) :
     }
 
     override fun createFragment(position: Int): Fragment {
-        return DoppelgangerFragment.getInstance(position)
+        return SkillLeaderBoard()
     }
 }

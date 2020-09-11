@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">GadsLeaderboard</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">LEADERBOARD</string>
+    <string name="submit">Submit</string>
+    <string name="skill_badge_description">Badge Image for Skill IQ Leaderboard</string>
+    <string name="project_on_github_link">Project on Github (link)</string>
 </resources>
