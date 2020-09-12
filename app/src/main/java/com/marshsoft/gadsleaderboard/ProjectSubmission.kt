@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
@@ -42,6 +43,7 @@ class ProjectSubmission : AppCompatActivity() {
         button.setOnClickListener {
             //send code to api
             alertDialog.dismiss()
+            progressBar.visibility = View.VISIBLE
             val postUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf9d1TcNU6zc6KR8bSEM41Z1g1zl35cwZr2xyjIhaMAz8WChQ/formResponse"
 
 
@@ -49,6 +51,7 @@ class ProjectSubmission : AppCompatActivity() {
 
             val request: StringRequest = object : StringRequest( Method.POST, postUrl,
                 Response.Listener { response ->
+                    progressBar.visibility = View.INVISIBLE
                     val successDialog = LayoutInflater.from(this).inflate(R.layout.custom_success_dialog,viewGroup,false)
                     val sucessAlertBuilder = AlertDialog.Builder(this)
                     sucessAlertBuilder.setView(successDialog)
@@ -57,19 +60,21 @@ class ProjectSubmission : AppCompatActivity() {
 
                 },
                 Response.ErrorListener { error ->
+                    progressBar.visibility = View.INVISIBLE
                     val failureDialog = LayoutInflater.from(this).inflate(R.layout.error_submission,viewGroup,false)
                     val failureAlertBuilder = AlertDialog.Builder(this)
                     failureAlertBuilder.setView(failureDialog)
                     val failureAlertDialog = failureAlertBuilder.create()
                     failureAlertDialog.show()
+                    println(error.message)
                 }) {
                 override fun getParams(): Map<String, String> {
 
                     val params = HashMap<String, String>()
-                    params["entry.1824927963"] = etEmail.text as String
-                    params["entry.1877115667"] = etFirstName.text as String
-                    params["entry.2006916086"] = etLastName.text as String
-                    params["entry.284483984"] = etGithubLink.text as String
+                    params["entry.1824927963"] = etEmail.text.toString()
+                    params["entry.1877115667"] = etFirstName.text.toString()
+                    params["entry.2006916086"] = etLastName.text.toString()
+                    params["entry.284483984"] = etGithubLink.text.toString()
                     return params
                 }
 
