@@ -26,6 +26,7 @@ class SkillLeaderBoard : Fragment() {
     private lateinit var rootView: View
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: SkillRecyclerAdapter
+    lateinit var prgSkill:ProgressBar
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var queue: RequestQueue
     private var leaders=  ArrayList<Leader>()
@@ -64,7 +65,7 @@ class SkillLeaderBoard : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_skill_leader_board, container, false)
-        val prgSkill = rootView.findViewById<ProgressBar>(R.id.prgskillLeaders)
+        prgSkill = rootView.findViewById(R.id.prgskillLeaders)
         prgSkill.visibility = View.VISIBLE
         initializeRecyclerView()
         return rootView

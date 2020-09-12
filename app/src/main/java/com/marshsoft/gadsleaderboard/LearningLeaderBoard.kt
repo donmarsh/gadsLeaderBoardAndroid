@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -25,6 +26,7 @@ class LearningLeaderBoard : Fragment() {
     private lateinit var rootView: View
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: HoursRecyclerAdapter
+    lateinit var prgHours: ProgressBar
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var queue:RequestQueue
     private var leaders=  ArrayList<Leader>()
@@ -66,6 +68,8 @@ class LearningLeaderBoard : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_learning_leader_board, container, false)
+        prgHours= rootView.findViewById(R.id.prglearningLeaders)
+        prgHours.visibility = View.VISIBLE
         initializeRecyclerView()
         return rootView
     }
