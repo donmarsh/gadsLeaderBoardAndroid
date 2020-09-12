@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.fragment_learning_leader_board.*
 
 /**
  * A simple [Fragment] subclass.
@@ -31,12 +32,13 @@ class LearningLeaderBoard : Fragment() {
         super.onCreate(savedInstanceState)
         queue = Volley.newRequestQueue(activity)
         onCreateComponent()
+
         // Request a string response from the provided URL.
         val stringRequest = StringRequest(
 
             Request.Method.GET, ApiHelper().buildUrl(false),
             { response ->
-
+                prglearningLeaders.visibility = View.INVISIBLE
                 leaders.addAll(ApiHelper().getLeadersFromJson(response))
                 val sortedLeaders = ArrayList(leaders.sortedWith(compareByDescending { it.hours }))
                 leaders.clear()
@@ -44,8 +46,10 @@ class LearningLeaderBoard : Fragment() {
                 adapter.notifyDataSetChanged()
 
 
+
             },
             {
+                prglearningLeaders.visibility = View.INVISIBLE
                 val toast = Toast.makeText(context, "Error retrieving Learning Leaders", Toast.LENGTH_SHORT)
                 toast.show()
             }

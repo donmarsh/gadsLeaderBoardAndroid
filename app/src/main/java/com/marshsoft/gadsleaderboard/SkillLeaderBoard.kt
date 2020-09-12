@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,8 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.fragment_learning_leader_board.*
+import kotlinx.android.synthetic.main.fragment_skill_leader_board.*
 
 
 /**
@@ -35,7 +38,7 @@ class SkillLeaderBoard : Fragment() {
 
             Request.Method.GET, ApiHelper().buildUrl(true),
             { response ->
-
+                prgskillLeaders.visibility = View.INVISIBLE
                 leaders.addAll(ApiHelper().getLeadersFromJson(response))
                 val sortedLeaders = ArrayList(leaders.sortedWith(compareByDescending { it.score }))
                 leaders.clear()
@@ -46,7 +49,8 @@ class SkillLeaderBoard : Fragment() {
 
             },
             {
-                val toast = Toast.makeText(context, "Error retrieving Learning Leaders", Toast.LENGTH_SHORT)
+                prgskillLeaders.visibility = View.INVISIBLE
+                val toast = Toast.makeText(context, "Error retrieving SkillIQ Leaders", Toast.LENGTH_SHORT)
                 toast.show()
             }
         )
@@ -60,6 +64,8 @@ class SkillLeaderBoard : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_skill_leader_board, container, false)
+        val prgSkill = rootView.findViewById<ProgressBar>(R.id.prgskillLeaders)
+        prgSkill.visibility = View.VISIBLE
         initializeRecyclerView()
         return rootView
     }
