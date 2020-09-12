@@ -65,7 +65,6 @@ class LearningLeaderBoard : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_learning_leader_board, container, false)
         initializeRecyclerView()
         return rootView
